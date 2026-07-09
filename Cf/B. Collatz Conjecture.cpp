@@ -5,8 +5,20 @@ typedef long long ll;
 void solve(){
     ll x,k,y;
     cin>>x>>y>>k;
-    if(y==1){cout<<0<<endl;return;}
-    cout<<(((x%y+(k+1)%y)%y==0)?1:(x%y+k%y)%y)<<endl;
+    x++;
+    k--;
+    while(x%y==0) x/=y;
+    while(k>=y-x%y&&x!=1){
+        ll tp=y-x%y;
+        x+=tp;
+        k-=tp;
+        while(x%y==0) x/=y;
+    }
+    if(k>=y-1){
+        cout<<1+k%(y-1)<<endl;
+    }else{
+        cout<<x+k<<endl;
+    }
 }
 
 int main(){
